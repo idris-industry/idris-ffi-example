@@ -1,4 +1,4 @@
-DEFAULT: testlib.o
+DEFAULT: testlib.o myFirstFFI.idr
 	idris myFirstFFI.idr -o myFirstFFI
 
 clean:
