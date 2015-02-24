@@ -8,10 +8,10 @@ module Main
 %link C "testlib.o"
 
 not_null : IO String
-not_null = mkForeign (FFun "not_null" [] FString)
+not_null = foreign FFI_C "not_null" (IO String)
 
 null : IO String
-null = mkForeign (FFun "null" [] FString)
+null = foreign FFI_C "null" (IO String)
 
 checkNull : String -> IO ()
 checkNull s = do isNull <- nullStr s
@@ -25,10 +25,10 @@ safeString s = do s' <- s
                   return (toMaybe (not isNull) s')
 
 safe_not_null : IO (Maybe String)
-safe_not_null = safeString (mkForeign (FFun "not_null" [] FString))
+safe_not_null = safeString (foreign FFI_C "not_null" (IO String))
 
 safe_null : IO (Maybe String)
-safe_null = safeString (mkForeign (FFun "null" [] FString))
+safe_null = safeString (foreign FFI_C "null" (IO String))
 
 main : IO ()
 main = do x <- not_null
