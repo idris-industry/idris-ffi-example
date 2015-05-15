@@ -35,5 +35,5 @@ main = do x <- not_null
           checkNull x
           y <- null
           checkNull y
-          safe_not_null >>= print
-          safe_null >>= print
+          safe_not_null >>= printLn
+          safe_null >>= printLn
